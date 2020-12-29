@@ -1,26 +1,23 @@
 <div class="row">
-    <div class="col-12">
-
-    
-  <form>
-    <div class="row">
-      <div class="col-sm-5 mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+  <div class="col-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" #inputName>
+        </div>
+        <div class="col-sm-2 mb-3">
+          <label for="amount" class="form-label">Amount</label>
+          <input type="number" class="form-control" id="amount" #inputAmount>
+        </div>
       </div>
-      <div class="col-sm-2 mb-3">
-        <label for="amount" class="form-label">Amount</label>
-        <input type="number" class="form-control" id="amount">
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success mr-2" (click)="onAdd()">Add</button>
+          <button type="button" class="btn btn-danger mr-2">Delete</button>
+          <button type="button" class="btn btn-primary mr-2">Clear</button>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <button type="submit" class="btn btn-success mr-2">Add</button>
-        <button type="button" class="btn btn-danger mr-2">Delete</button>
-        <button type="button" class="btn btn-primary mr-2">Clear</button>
-      </div>
-    </div>
-
-  </form>
-</div>
+    </form>
+  </div>
 </div>
