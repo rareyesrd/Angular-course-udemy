@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project-course';
+  linkSelected = 'recipe';
+  onSelected(linkSelected: string): void {
+    this.linkSelected = linkSelected;
+  }
 }
