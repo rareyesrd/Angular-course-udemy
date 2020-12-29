@@ -6,4 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
+
+
+  onIntervaFired(counter: number){
+    if(counter % 2 === 0){
+      this.evenNumbers.push(counter)
+    }else{
+      this.oddNumbers.push(counter)
+    }
+  }
 }
