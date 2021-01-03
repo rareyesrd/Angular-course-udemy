@@ -1,18 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button
-        class="btn btn-primary"
-        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
       <br><br>
       <ul class="list-group">
-        <li
-          class="list-group-item">
+        <li class="list-group-item">
         </li>
       </ul>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
+    </div>
+    <div class="col-xs-12">
+      <p appBasicHighlight>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates laborum quibusdam, totam
+        ullam, quam ut
+        eveniet expedita, odit commodi quasi ipsam rem! Reiciendis optio accusantium hic ex vitae odit id.</p>
+      <p appBetterHighlight>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi accusantium laboriosam
+        provident voluptatibus adipisci ab soluta et, sed aspernatur doloribus, minima maiores natus tempore quod libero
+        modi minus vero sapiente.</p>
     </div>
   </div>
 </div>
