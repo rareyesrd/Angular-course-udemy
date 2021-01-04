@@ -13,8 +13,8 @@
       </ul>
       <ul class="nav navbar-nav ml-auto">
         <li class="dropdown">
-          <a class="dropdown-toggle nav-link" href="#" role="button"> Manage </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-toggle nav-link" href="#" role="button" appDropdown [elRef]="show"> Manage </a>
+          <ul class="dropdown-menu" #show>
             <li> <a href="#">Save Data</a>
             </li>
             <li> <a href="#">Fetch Data</a>

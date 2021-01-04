@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { dropdownDirective } from './shared/dropdown.directive'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { ShoppingListComponent } from './Components/shopping-list/shopping-list.component';
@@ -20,6 +20,7 @@ import { RecipesComponent } from './Components/recipes/recipes.component';
     RecipeItemComponent,
     RecipeDetailComponent,
     RecipesComponent,
+    dropdownDirective
   ],
   imports: [BrowserModule],
   providers: [],
