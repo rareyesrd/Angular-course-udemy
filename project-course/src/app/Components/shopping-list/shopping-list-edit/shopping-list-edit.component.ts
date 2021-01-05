@@ -7,8 +7,8 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppingListEditComponent implements OnInit {
-  @ViewChild('inputName', {static: true}) inputNameRef: ElementRef;
-  @ViewChild('inputAmount', {static: true}) inputAmountRef: ElementRef;
+  @ViewChild('inputName', { static: true }) inputNameRef: ElementRef;
+  @ViewChild('inputAmount', { static: true }) inputAmountRef: ElementRef;
   @Output() ingredient = new EventEmitter<Ingredient>();
   constructor() { }
   ngOnInit(): void {
