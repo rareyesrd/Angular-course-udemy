@@ -6,13 +6,13 @@ import { UsersServiceService } from './services/users-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   activeUsers: string[] = [];
   inactiveUsers: string[] = [];
 
-  constructor(private userService: UsersServiceService){}
+  constructor(private userService: UsersServiceService) { }
 
-  ngOnInit(){
+  ngOnInit(): void {
     this.activeUsers = this.userService.activeUsers;
     this.inactiveUsers = this.userService.inactiveUsers;
   }

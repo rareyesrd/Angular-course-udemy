@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CounterServiceService } from '../services/counter-service.service';
 import { UsersServiceService } from '../services/users-service.service';
 
 @Component({
@@ -8,9 +9,13 @@ import { UsersServiceService } from '../services/users-service.service';
 })
 export class InactiveUsersComponent {
   @Input() users: string[];
-
-  constructor(private userService: UsersServiceService) {}
+  inactiveCounter: number;
+  inactiveIncrement: number;
+  constructor(private userService: UsersServiceService,
+    private counterService: CounterServiceService) { }
   onSetToActive(id: number) {
     this.userService.onActive(id);
+    this.counterService.inactiveCounter();
+    this.inactiveCounter = this.counterService.inactiveIncrement;
   }
 }
