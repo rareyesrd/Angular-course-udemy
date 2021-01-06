@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
-import { ShoopinglistService } from '../shoopinglist.service';
+import { ShoppinglistService } from '../shoppinglist.service';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -11,7 +11,7 @@ export class ShoppingListEditComponent implements OnInit {
   @ViewChild('inputName', { static: true }) inputNameRef: ElementRef;
   @ViewChild('inputAmount', { static: true }) inputAmountRef: ElementRef;
 
-  constructor(private shoppingListService: ShoopinglistService) {}
+  constructor(private shoppingListService: ShoppinglistService) {}
   ngOnInit(): void {}
 
   onAdd(): void {
