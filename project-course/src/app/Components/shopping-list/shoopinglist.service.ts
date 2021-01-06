@@ -6,7 +6,7 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 })
 export class ShoopinglistService {
 
-  ingredients: Ingredient[] = [
+  private ingredients: Ingredient[] = [
     new Ingredient('Apple', 5),
     new Ingredient('Tomatoes', 10)
   ];
@@ -16,6 +16,6 @@ export class ShoopinglistService {
   }
 
   getIngredients(): Ingredient[]{
-     return this.ingredients.slice();
+     return this.ingredients;
   }
 }
