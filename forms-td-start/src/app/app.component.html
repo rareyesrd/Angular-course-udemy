@@ -7,7 +7,7 @@
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" ngModel name="username" required>
           </div>
-          <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
+          <button class="btn btn-default" type="button" (click)="suggestUserName(f.form)">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
             <input type="email" id="email" class="form-control" ngModel name="email" email required #email="ngModel">
@@ -35,6 +35,26 @@
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 mt-5" *ngIf="showDataForm">
+      
+      <hr>
+
+      <h3>Your data</h3>
+      <p>
+        Name: {{ user.name }}
+      </p>
+      <p>
+        Email: {{ user.mail }}
+      </p>
+      <p>
+        Answer: {{ user.answer }}
+      </p>
+      <p>
+        Secret: {{ user.secret }}
+      </p><p>
+        Gender: {{ user.gender }}
+      </p>
     </div>
   </div>
 </div>
