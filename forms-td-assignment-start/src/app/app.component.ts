@@ -25,5 +25,6 @@ export class AppComponent {
 
 
     this.handleForm.resetForm();
+
   }
 }
