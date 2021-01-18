@@ -42,7 +42,7 @@ export class AppComponent {
     this.showDataForm = true;
     console.log(this.signUp);
     this.user.name = this.signUp.value.userData.username;
-    this.user.email = this.signUp.value.email;
+    this.user.email = this.signUp.value.userData.email;
     this.user.answer = this.signUp.value.defaultQuestion;
     this.user.secret = this.signUp.value.secret;
     this.user.gender = this.signUp.value.gender;
