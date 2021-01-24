@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,9 +6,16 @@ import { NgForm } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   @ViewChild('f') handleForm: NgForm;
+
+  showData = false;
+  subscriptions = [
+    'Basic',
+    'Advanced',
+    'Pro'
+  ];
 
   data = {
     email: '',
@@ -17,14 +24,22 @@ export class AppComponent {
   };
 
 
+  ngOnInit(): void {
+    // console.log(this.handleForm)
+  }
+
   onSubmit(): void {
     console.log(this.handleForm);
     this.data.email = this.handleForm.value.email;
-    this.data.level = this.handleForm.value.level;
+
+    // Check if select options was selected and setting a default value to Advanced
+    !this.handleForm.controls.level.touched || this.handleForm.controls.level.value === '' ? this.data.level = 'Advanced' : this.data.level = this.handleForm.value.level;
+
+
     this.data.password = this.handleForm.value.password;
-
-
-    this.handleForm.resetForm();
+    this.showData = !this.showData;
+    console.log(this.data);
+    // this.handleForm.resetForm();
 
   }
 }
