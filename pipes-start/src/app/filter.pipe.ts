@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
+  pure: false
 })
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, filterElement: string, prop: string): any {
-    if (value === '') {
+    if (value.length === 0 || filterElement === '') {
       return value;
     }
     const resultSearch = [];
