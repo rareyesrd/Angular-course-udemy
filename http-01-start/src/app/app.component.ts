@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/Operators";
+import { Post } from "./posts.model";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
   loadedPosts = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.fetchPosts();
@@ -18,8 +20,12 @@ export class AppComponent implements OnInit {
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
     console.log(postData);
-    this.http.post('https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json', postData)
-    .subscribe(responseData => console.log(responseData));
+    this.http
+      .post<{ name: string }>(
+        "https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json",
+        postData
+      )
+      .subscribe((responseData) => console.log(responseData));
   }
 
   onFetchPosts() {
@@ -31,7 +37,22 @@ export class AppComponent implements OnInit {
     // Send Http request
   }
 
-  private fetchPosts(){
-    this.http.get('https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json').subscribe(data => console.log(data));
+  private fetchPosts() {
+    this.http
+      .get<Post>(
+        "https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json"
+      )
+      .pipe(
+        map((reponseData) => {
+          const postsArray: Post[] = [];
+          for (const key in reponseData) {
+            if (reponseData.hasOwnProperty(key)) {
+              postsArray.push({ ...reponseData[key], id: key });
+            }
+          }
+          return postsArray;
+        })
+      )
+      .subscribe((data) => console.log(data));
   }
 }
