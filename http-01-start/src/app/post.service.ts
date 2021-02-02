@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/Operators';
@@ -9,19 +9,22 @@ export class PostService {
   constructor(private http: HttpClient) { }
   error = new Subject<string>();
   onCreateandStorePost(postData: { title: string; content: string }) {
-    // Send Http request
     this.http
       .post<{ name: string }>(
         'https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json',
         postData
       )
-      .subscribe((responseData) => responseData, error => this.error = error.message);
+      .subscribe(responseData => responseData, error => this.error.next(error.message));
   }
 
   onFecthPost() {
     return this.http
       .get<Post>(
-        'https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json'
+        'https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json',
+        {
+          headers: new HttpHeaders({ 'Custom header': 'Hola from header' }),
+          params: new HttpParams().set('print', 'pretty')
+        }
       )
       .pipe(
         map((reponseData) => {
