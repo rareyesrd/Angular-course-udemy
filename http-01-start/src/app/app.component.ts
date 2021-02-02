@@ -1,19 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Post } from "./posts.model";
-import { PostService } from "./post.service";
+import { Component, OnInit } from '@angular/core';
+import { Post } from './posts.model';
+import { PostService } from './post.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
-  constructor(private http: HttpClient, private postService: PostService) {}
+  error = null;
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.postService.error.subscribe(errorMessage => this.error = errorMessage);
     this.fetchPosts();
   }
 
@@ -29,13 +30,12 @@ export class AppComponent implements OnInit {
     this.postService.deletePost().subscribe(() => this.loadedPosts = []);
   }
 
- 
   private fetchPosts() {
-    this.isFetching = true;
     this.postService.onFecthPost()
-      .subscribe((data) => {
-        this.isFetching = false;
+      .subscribe(data => {
         this.loadedPosts = data;
+      }, error => {
+        this.error = `${error.error.error} status ${error.status}`;
       });
   }
 }

@@ -1,26 +1,27 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { map } from "rxjs/Operators";
-import { Post } from "./posts.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/Operators';
+import { Post } from './posts.model';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class PostService {
   constructor(private http: HttpClient) {}
-
+  error = new Subject<string>();
   onCreateandStorePost(postData: { title: string; content: string }) {
     // Send Http request
     this.http
       .post<{ name: string }>(
-        "https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json",
+        'https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json',
         postData
       )
-      .subscribe((responseData) => responseData);
+      .subscribe((responseData) => responseData, error =>  this.error = error.message);
   }
 
   onFecthPost() {
     return this.http
       .get<Post>(
-        "https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json"
+        'https://ng-complete-guide-5dc83-default-rtdb.firebaseio.com/posts.json'
       )
       .pipe(
         map((reponseData) => {
