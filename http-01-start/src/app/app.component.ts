@@ -9,7 +9,7 @@ import { Post } from "./posts.model";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -53,6 +53,6 @@ export class AppComponent implements OnInit {
           return postsArray;
         })
       )
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => this.loadedPosts = data);
   }
 }
